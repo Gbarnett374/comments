@@ -9,15 +9,16 @@
                 </div>
 
                 <div class="reply">
-                    <textarea></textarea>
+                    <textarea name="body"></textarea>
                     <br>
-                    <button>Reply</button>
+                    <button class='reply-btn'>Reply</button>
+                    <input name="parent_id" type="hidden" value=" {{ $comment->parent_id }}">
                 </div>
             </div>
         @endforeach
         <h3>Leave a New Comment</h3>
         <div class="new">
-            <textarea></textarea>
+            <textarea name="body"></textarea>
             <br>
             <button>Submit</button>
         </div>
