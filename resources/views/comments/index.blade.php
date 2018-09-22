@@ -20,6 +20,6 @@
         <div class="new">
             <textarea name="body"></textarea>
             <br>
-            <button>Submit</button>
+            <button class="submit-comment-btn">Submit</button>
         </div>
 @stop
