@@ -28,6 +28,14 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         Log::info($request);
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'body' => 'required'
+        ]);
         $comment = Comment::create($request->all());
+        $comments = Comment::all();;
+        return response(view('comments.index', ['comments'=>$comments]), 200);
+      
+
     }
 }
