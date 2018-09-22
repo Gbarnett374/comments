@@ -27,7 +27,7 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        Log::info('An informational message.');
+        Log::info($request);
+        $comment = Comment::create($request->all());
     }
 }
