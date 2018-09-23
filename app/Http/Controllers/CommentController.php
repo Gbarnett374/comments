@@ -15,7 +15,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $data['comments'] = Comment::all();
+        $data['comments'] = Comment::getThreaded();
         return view('comments.index', $data);
     }
 
@@ -33,8 +33,8 @@ class CommentController extends Controller
             'body' => 'required'
         ]);
         $comment = Comment::create($request->all());
-        $comments = Comment::all();;
-        return response(view('comments.index', ['comments'=>$comments]), 200);
+        $comments = Comment::getThreaded();
+        return response(view('comments.index', ['comments'=> $comments]), 200);
       
 
     }
