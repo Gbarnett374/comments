@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use Illuminate\Http\Request;
-use Log;
 
 class CommentController extends Controller
 {
@@ -27,7 +26,6 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        Log::info($request);
         // Validate Fields. 
         $validatedData = $request->validate([
             'name' => 'required',
