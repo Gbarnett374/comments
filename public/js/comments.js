@@ -1,3 +1,7 @@
+$(document).ready(function() {
+    $('.alert').hide();
+});
+
 $(document).on('click', '.reply-btn', function(e) {
     var body = $(this).siblings('textarea').val();
     // TODO find a better way of ding this. 
@@ -35,10 +39,21 @@ function save(comment) {
     }).done(function (data) {
         var result = $(data).filter('#app');
         $('body').html(result);
+        displayAlert('alert-success', 'Comment Created!');
 
     }).fail(function (err) {
         console.log(err);
         console.log('Errors');
+        displayAlert('alert-danger', err.responseText);
 
     });
+}
+
+function displayAlert(klass, message) {
+    $('.alert').addClass(klass).text(message);
+    $('.alert').show().delay(3000).fadeOut('slow');
+    setTimeout(function() {
+        $('.alert').removeClass(klass);
+    }, 4000);
+    $("html,body").animate({ scrollTop: 0 }, "slow");
 }

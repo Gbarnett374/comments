@@ -28,14 +28,30 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         Log::info($request);
+        // Validate Fields. 
         $validatedData = $request->validate([
             'name' => 'required',
             'body' => 'required'
         ]);
-        $comment = Comment::create($request->all());
+        $parentId = $request->input('parent_id');
+
+        if (isset($parentId)) {
+          $count = Comment::getThreadCount($parentId, 0);
+        }
+        // Early return if we already have too many neasted comments.
+        if (isset($count) && $count >= 3 ) {
+            $error = 'You have reached the maximum amount of neasted comments.';
+            return response()->json($error, 422);
+        }
+        // Looks like Laravel already escapes tags but lets remove them to be safe. 
+        $sanitizedInputs = array_map(function($input){
+            return trim(strip_tags($input));
+        }, $request->all());
+
+        $comment  = Comment::create($sanitizedInputs);
         $comments = Comment::getThreaded();
         return response(view('comments.index', ['comments'=> $comments]), 200);
-      
+        
 
     }
 }
