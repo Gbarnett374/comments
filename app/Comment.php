@@ -14,9 +14,9 @@ class Comment extends Model
    /**
     * getThreaded()
     * Gets comments grouped by parent_id and date created. 
-    * @return [collection] $comments 
+    * @return [Collection/iterable] $comments 
     */
-   public static function getThreaded() 
+   public static function getThreaded() : iterable
    {
        $comments = Comment::all()->groupBy('parent_id', 'created_at');
        if (count($comments)) {
@@ -32,7 +32,7 @@ class Comment extends Model
    * @param [int] $count
    * @return $count
    */
-   public static function getThreadCount($parentId, $count) 
+   public static function getThreadCount(int $parentId, int $count) : int
    {
         $comment = Comment::find($parentId);
         if (!isset($comment->parent_id)) {
