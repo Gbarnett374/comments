@@ -27,7 +27,7 @@ class Comment extends Model
    }
   /**
    * getThreadCount
-   * Recursively go up the tree and return the current number of neasted comments. 
+   * Recursively go up the tree and return the current number of nested comments. 
    * @param [int] $parent_id
    * @param [int] $count
    * @return $count

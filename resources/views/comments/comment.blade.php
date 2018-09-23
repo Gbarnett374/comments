@@ -1,13 +1,5 @@
 <li>
     <div>
-        <!-- <div class="name">
-            <label>Comment From:</label>
-            {{$comment->name}}
-        </div>
-        <div class="body">
-            <label>Body:</label>
-            {{$comment->body}}
-        </div> -->
         <div class="card">
             <h5 class="card-header">Comment From: {{$comment->name}}</h5>
             <div class="card-body">

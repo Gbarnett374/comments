@@ -38,9 +38,9 @@ class CommentController extends Controller
         if (isset($parentId)) {
           $count = Comment::getThreadCount($parentId, 0);
         }
-        // Early return if we already have too many neasted comments.
+        // Early return if we already have too many nested comments.
         if (isset($count) && $count >= 3 ) {
-            $error = 'You have reached the maximum amount of neasted comments.';
+            $error = 'You have reached the maximum amount of nested comments.';
             return response()->json($error, 422);
         }
         // Looks like Laravel already escapes tags but lets remove them to be safe. 

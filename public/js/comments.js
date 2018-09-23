@@ -4,7 +4,6 @@ $(document).ready(function() {
 
 $(document).on('click', '.reply-btn', function(e) {
     var body = $(this).siblings('textarea').val();
-    // TODO find a better way of ding this. 
     var name = $(this).siblings('input').val();
     var parent_id = $(this).next('input').val();
     var comment = {
@@ -23,8 +22,6 @@ $(document).on('click', '.submit-comment-btn', function (e) {
         name: name
     };
     save(comment);
-    console.log(name);
-
 });
 
 
@@ -42,10 +39,7 @@ function save(comment) {
         displayAlert('alert-success', 'Comment Created!');
 
     }).fail(function (err) {
-        console.log(err);
-        console.log('Errors');
         displayAlert('alert-danger', err.responseText);
-
     });
 }
 
@@ -55,5 +49,5 @@ function displayAlert(klass, message) {
     setTimeout(function() {
         $('.alert').removeClass(klass);
     }, 4000);
-    $("html,body").animate({ scrollTop: 0 }, "slow");
+    $('html,body').animate({ scrollTop: 0 }, 'slow');
 }
